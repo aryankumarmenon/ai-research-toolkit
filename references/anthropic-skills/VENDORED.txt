@@ -1,0 +1,14 @@
+Source:  https://github.com/anthropics/skills
+Clone date: 2026-07-02
+Commit:  9d2f1ae187231d8199c64b5b762e1bdf2244733d
+Form:    FULL vendor (all text/scripts, ~4MB upstream). .git stripped.
+Neutralized: root .claude-plugin/ -> dot-claude-plugin/ (plugin-marketplace
+             manifest, renamed so it cannot auto-register in this workspace).
+             The skills/*/SKILL.md files live under skills/ (not a root
+             .claude/skills/), so they do not register as project skills here.
+Upstream license: NONE detected via GitHub API (no repo-root LICENSE file at
+             vendor time). Anthropic's skills repo carries no explicit OSS
+             license — do not assume MIT/Apache terms. If this repo goes
+             public, verify Anthropic's actual redistribution terms before
+             keeping this vendor dir in the public tree; local-only is the
+             safe default until confirmed.

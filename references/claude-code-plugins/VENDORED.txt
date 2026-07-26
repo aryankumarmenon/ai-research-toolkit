@@ -1,0 +1,23 @@
+Source:  https://github.com/anthropics/claude-code  (subtrees: plugins/, examples/)
+Clone date: 2026-07-02
+Commit:  75709eacf1334051ea293fb87a0e88a1e6812f94
+Form:    CURATED vendor. Upstream repo is ~28MB of product noise (demo.gif,
+         devcontainer, scripts, feed.xml, .vscode). Kept only:
+           - plugins/  : hookify, ralph-wiggum, feature-dev, code-review,
+                         pr-review-toolkit, commit-commands, plugin-dev,
+                         security-guidance  (+ plugins/README.md)
+           - examples/ : hooks/, settings/
+           - UPSTREAM-README.md (repo README), CHANGELOG.md
+         Dropped: the other output-style/migration plugins, all product build
+         tooling, and media.
+         .git stripped.
+Neutralized: each kept plugin's .claude-plugin/ -> dot-claude-plugin/ (the plugin
+             manifest, renamed so it cannot auto-register as a marketplace in this
+             workspace). The nested commands/agents/skills/hooks inside each plugin
+             live under plugins/<name>/, not a root .claude/, so they do not load
+             as project config here.
+Navigate:    INDEX.md
+Upstream license: NONE detected via GitHub API (anthropics/claude-code has no
+             repo-root LICENSE file at vendor time) — same caution as
+             anthropic-skills: do not assume open terms, verify before
+             public redistribution.

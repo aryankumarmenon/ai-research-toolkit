@@ -1,0 +1,7 @@
+Source:  https://github.com/anthropics/claude-cookbooks  (subtree: patterns/agents/)
+Clone date: 2026-07-02
+Commit:  942b0718e49f95d4b6f9afe3965d4d3232c11ac1
+Form:    CURATED vendor — only patterns/agents/ kept (the "Building Effective
+         Agents" pattern notebooks). Upstream repo is ~207MB (images/notebooks);
+         sparse-checkout took just this subtree. .git stripped.
+Upstream license: MIT (anthropics/claude-cookbooks, confirmed via GitHub API).

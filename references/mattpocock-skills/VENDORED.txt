@@ -1,0 +1,6 @@
+Source: https://github.com/mattpocock/skills
+Cloned: 2026-06-27
+Commit: 5d78bd0903420f97c791f834201e550c765699f8
+Vendored into ai-research as a read-only reference; nested .git removed.
+2026-07-02: .claude-plugin/ -> dot-claude-plugin/ (neutralized so the plugin
+manifest can't auto-register here — same convention as the other vendors).

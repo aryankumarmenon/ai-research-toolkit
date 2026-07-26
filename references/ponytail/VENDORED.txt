@@ -1,0 +1,17 @@
+Source:  https://github.com/DietrichGebert/ponytail
+Clone date: 2026-07-13
+Commit:  14a0d79548d4de8fc2de95c1b94bb0de63a739d3
+Form:    CURATED vendor — AGENTS.md (the core ruleset, 32 lines) +
+         UPSTREAM-README.md (renamed from README.md so it can't be mistaken
+         for our index; kept for the benchmark methodology section).
+         Skills, hooks, installers, and platform rule-dir copies deliberately
+         NOT vendored — we integrate the ruleset idea, not the plugin
+         (see references/README.md entry for why).
+Neutralized: nothing auto-loads — AGENTS.md here is not a live instruction
+         file (Claude Code reads CLAUDE.md, not AGENTS.md, and this sits
+         under references/, not the repo root).
+Claims note: upstream benchmark numbers (54% less code / 20% cheaper /
+         27% faster) are the author's self-benchmark — 12 tasks, n=4,
+         Haiku 4.5, one FastAPI+React repo. Treat as
+         [hypothesis — author's self-benchmark], not verified.
+Upstream license: MIT (DietrichGebert/ponytail, confirmed via GitHub API).

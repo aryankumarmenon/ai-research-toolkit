@@ -1,0 +1,21 @@
+Source: https://github.com/shanraisshan/claude-code-best-practice
+Cloned/vendored: 2026-06-27
+Commit: 97ba6fc1eaf60dd6cdf09e14fa055b790d3976f8
+
+CURATED vendor — this is NOT the full repo. The upstream is ~146MB, almost all
+media (presentation/ 24M, tips/ 27M, a badge dir 9.7M, plus wav/mp3/png/psd/mov).
+To keep ai-research clean and low-token, only the high-signal text was kept:
+
+  KEPT:    markdown writeups + config — best-practice/, implementation/,
+           reports/, orchestration-workflow/, agent-teams/, development-workflows/,
+           the .claude/ config (agents, commands, skills, hooks.py, settings.json,
+           rules), .mcp.json, CLAUDE.md, LICENSE.
+  DROPPED: all media/binaries, sounds/, assets/, the badge dir (!/),
+           presentation/, tips/, videos/, changelog/, tutorial/, the 76KB root
+           README (badge markup), node_modules, .git, .github. Also pruned the
+           presentation-specific demo skills/agents/rule under .claude/ (noise
+           tied to the dropped presentation/ dir); kept the weather/time demos
+           since they illustrate orchestration + agent-teams.
+
+Full original clone remains on disk at ~/claude-code-best-practice if media or
+the dropped dirs are ever needed. See INDEX.md for what's here.

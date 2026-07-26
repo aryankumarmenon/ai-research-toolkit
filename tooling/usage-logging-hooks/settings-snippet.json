@@ -1,0 +1,27 @@
+{
+  "//": "Merge this 'hooks' block into your project's .claude/settings.local.json. Async hooks are fire-and-forget (zero token cost). log-read-check.sh, block-redundant-read.sh, and filter-test-output.sh are SYNCHRONOUS on purpose (no async flag) — they must talk back (nudge, deny, or replace output).",
+  "hooks": {
+    "UserPromptSubmit": [
+      { "hooks": [ { "type": "command", "command": "./.claude/hooks/log-command.sh", "async": true } ] }
+    ],
+    "UserPromptExpansion": [
+      { "hooks": [ { "type": "command", "command": "./.claude/hooks/log-command.sh", "async": true } ] }
+    ],
+    "SubagentStop": [
+      { "hooks": [ { "type": "command", "command": "./.claude/hooks/log-subagent.sh", "async": true } ] }
+    ],
+    "PreCompact": [
+      { "hooks": [ { "type": "command", "command": "./.claude/hooks/log-precompact.sh", "async": true } ] }
+    ],
+    "PreToolUse": [
+      { "matcher": "Read", "hooks": [ { "type": "command", "command": "./.claude/hooks/block-redundant-read.sh" } ] }
+    ],
+    "PostToolUse": [
+      { "matcher": "Read", "hooks": [ { "type": "command", "command": "./.claude/hooks/log-read-check.sh" } ] },
+      { "matcher": "Bash", "hooks": [ { "type": "command", "command": "./.claude/hooks/filter-test-output.sh" } ] }
+    ],
+    "Stop": [
+      { "hooks": [ { "type": "command", "command": "./.claude/hooks/capture-pending-lessons.sh", "async": true } ] }
+    ]
+  }
+}

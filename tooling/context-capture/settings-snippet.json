@@ -1,0 +1,15 @@
+{
+  "//": "Merge this SessionStart block into <project>/.claude/settings.json (or settings.local.json). If a 'hooks' key already exists, add the SessionStart array into it — don't replace the whole hooks object.",
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"$CLAUDE_PROJECT_DIR/.claude/hooks/load-state.py\""
+          }
+        ]
+      }
+    ]
+  }
+}
