@@ -17,3 +17,5 @@ Open the originals ([references/](../references/)) only for a worked sample of a
 mechanism a guide points at; the authoritative skill-authoring source is now
 Anthropic's own spec (see the pointer at the top of
 [writing-skills.md](writing-skills.md)).
+
+<!-- sync-test marker -->
