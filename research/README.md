@@ -12,6 +12,7 @@ topic per note.
 | [2026-07-05_fable5-compound-stack-verification.md](2026-07-05_fable5-compound-stack-verification.md) | Verifying an X thread's Fable 5 feature claims against official docs — what's real, what's fabricated, what we adopted |
 | [2026-07-19_harness-and-loop-engineering.md](2026-07-19_harness-and-loop-engineering.md) | The field names the discipline (Hashimoto/OpenAI/Anthropic, dated timeline) — prescriptive harness principles, 12-factor-agents mapped to us, the 8-loop taxonomy, loop failure modes |
 | [2026-08-02_ngo-project-validation.md](2026-08-02_ngo-project-validation.md) | Validation kit for the NGO side-project candidates — pre-committed decision gates, past-behaviour interview scripts, outreach templates, channels |
+| [2026-08-02_oss-contribution-plan.md](2026-08-02_oss-contribution-plan.md) | OSS contribution plan (Aug→Dec 2026) — sober hiring-conversion evidence, measured healthy-vs-starved repo scan, the 2026 AI-contribution policy split, safe agent tooling, open deep-project decision |
 
 [journal.md](journal.md) is different in kind: the **append-only dated history**
 of work on this repo (newest first), maintained by `/sync-context`. New

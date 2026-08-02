@@ -46,6 +46,8 @@ This is the durable concept layer — maintained by /sync-context Step 6 (net-ne
 - **Fresh session per issue** — keep each unit inside the smart zone → `workflows/idea-to-ship.md`
 - **Venture pipeline mirrors the dev pipeline** — idea → grill → research → verify → position → plan → gate reviews → dev handoff; gates pre-committed before data arrives → `workflows/venture-pipeline.md`
 - **Claims discipline** — every market/factual claim is `[verified — source]` or `[hypothesis]`; external AI pastes stay unverified until an adversarial claim-verifier passes them; the tag contract is what makes role-agent outputs composable → `catalog/business-agents.md`
+- **Past-behaviour validation** — interview for what someone *did* ("walk me through your last filing"), never what they *would* do; hypothetical questions are free to say yes to and predict nothing. Corollaries: interview whoever feels the pain (often not leadership), and build the gates on what interviewees *describe* rather than on secondary statistics → `research/2026-08-02_ngo-project-validation.md`
+- **Grade fan-out strands separately** — source authority varies *within* one research run; route decisions around the weak strands instead of averaging them into a single confidence → `research/2026-08-02_ngo-project-validation.md`
 
 ---
 
