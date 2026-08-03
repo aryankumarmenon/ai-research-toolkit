@@ -92,6 +92,7 @@ This is the durable concept layer — maintained by /sync-context Step 6 (net-ne
 - **Dynamic Workflows: Claude authors its own orchestration harness at runtime (fan-out-synthesize, adversarial verification)** — `/config` (≥v2.1.202) exposes an advisory small/medium/large size guideline, not an enforced cap → `research/2026-07-05_fable5-compound-stack-verification.md`
 - **Business role-agent family** — six scoped roles (strategy/PM/marketing/UX/research/verification) with explicit "Refuses to do" fences; project type is an onboarding axis, not a tier → `catalog/business-agents.md` · `tooling/agent-templates/`
 - **Specialist review panel** — split review into focused axes (design/principal-engineer, language idioms, standards, spec) in fresh parallel contexts, never merged; pick 2–3 axes per diff (0.95^N), each strictly above what tooling enforces; SOLID is a lens not a checklist — depth beats decomposition (SRP-shrapnel warning) → `catalog/agents.md` · `tooling/agent-templates/design-reviewer.md`
+- **"Graph engineering" — orchestration-topology sense (naming convergence, Jul 2026)** — new field term for agents/routers/human-checkpoints-as-nodes, permitted-transitions-as-edges; maps onto what `Dynamic Workflows` + `Orchestrator-workers` already do here — validation of existing practice, not a gap → `research/2026-08-03_graph-engineering.md`
 
 ---
 
@@ -112,6 +113,7 @@ This is the durable concept layer — maintained by /sync-context Step 6 (net-ne
 - **Web automation: 3 tiers** — HTTP/browser/computer-use; prototype general, harden cheap → `guides/web-automation-tiers.md`
 - **Outcome-grader loop: define outcome + rubric, independent grader in fresh context, iterate to max_iterations (/goal local · Outcomes cloud)** → `research/2026-07-05_fable5-compound-stack-verification.md`
 - **Vision maker→verifier: screenshot the rendered UI, fresh vision agent grades vs the goal — generator never grades its own work** → `research/2026-07-05_fable5-compound-stack-verification.md`
+- **"Graph engineering" — memory-graph sense (typed-edge knowledge graphs, e.g. GraphRAG/Zep-Graphiti/Mem0, as agent context/memory instead of flat vector-RAG)** — genuine gap vs our flat STATE.md/journal memory; watch-list only until flat files actually hit a multi-hop or temporal-reasoning wall; real cost is entity resolution, not graph algorithms — error compounds multiplicatively per hop → `research/2026-08-03_graph-engineering.md`
 
 ---
 

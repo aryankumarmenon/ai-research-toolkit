@@ -13,6 +13,7 @@ topic per note.
 | [2026-07-19_harness-and-loop-engineering.md](2026-07-19_harness-and-loop-engineering.md) | The field names the discipline (Hashimoto/OpenAI/Anthropic, dated timeline) — prescriptive harness principles, 12-factor-agents mapped to us, the 8-loop taxonomy, loop failure modes |
 | [2026-08-02_ngo-project-validation.md](2026-08-02_ngo-project-validation.md) | Validation kit for the NGO side-project candidates — pre-committed decision gates, past-behaviour interview scripts, outreach templates, channels |
 | [2026-08-02_oss-contribution-plan.md](2026-08-02_oss-contribution-plan.md) | OSS contribution plan (Aug→Dec 2026) — sober hiring-conversion evidence, measured healthy-vs-starved repo scan, the 2026 AI-contribution policy split, safe agent tooling, open deep-project decision |
+| [2026-08-03_graph-engineering.md](2026-08-03_graph-engineering.md) | "Graph engineering" naming wave (Jul 2026) — two senses (orchestration topology vs. knowledge/memory graphs), fact-checked against a fabricated study + an inflated benchmark, mapped onto existing concepts |
 
 [journal.md](journal.md) is different in kind: the **append-only dated history**
 of work on this repo (newest first), maintained by `/sync-context`. New
