@@ -11,6 +11,7 @@ own.
 | [writing-skills.md](writing-skills.md) | How to author a skill that's predictable (Pocock's `writing-great-skills`, distilled) |
 | [context-and-subagents.md](context-and-subagents.md) | Managing the context window; when/how to use subagents; skills-vs-MCP token economics |
 | [web-automation-tiers.md](web-automation-tiers.md) | The three tiers of internet automation (HTTP → browser → computer use), which to pick, and the prototype-high/harden-low play |
+| [agent-integrations.md](agent-integrations.md) | Wiring Jira / Slack / GitHub / Postman / Playwright — MCP vs CLI economics, which MCP *scope* keeps work and personal apart, and the adoption order |
 | [git-workflow.md](git-workflow.md) | Branch/rebase/merge discipline for this repo — one branch per topic, rebase over merge, delete on merge |
 
 These distill the vendored reference repos so you don't re-read them each time.

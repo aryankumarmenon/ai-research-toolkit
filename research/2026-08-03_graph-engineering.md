@@ -74,6 +74,10 @@ human-curated). Worth flagging, not yet worth adopting — see §4.
 
 ## 4. What (if anything) to adopt
 
+> **Superseded in part — see §6 (2026-08-18).** The gate this section sets did
+> fire, but on a failure mode graph memory doesn't address; the conclusion
+> "don't adopt Sense B" survived, the reasoning below for *how to decide* did not.
+
 Nothing actionable today. Sense A is already practiced here. Sense B (memory
 graphs) is a genuine capability gap, but:
 
@@ -94,6 +98,46 @@ graphs) is a genuine capability gap, but:
 debunk, LightRAG re-benchmark) — closest thing to a claim-verifier voice
 found here. Worth a Tier-2 add if graph-engineering coverage keeps recurring
 in future digests. Not added this round — one post isn't a track record yet.
+
+## 6. Revisit (2026-08-18) — the gate fired, and the tool still wasn't the answer
+
+§4 parked memory-graphs behind a gate: adopt only *if and when* this repo's own
+memory outgrows flat files. Fifteen days later the gate fired. What it taught is
+mostly about how the gate was written.
+
+**The measurement.** `STATE.md` had reached **601 lines / 42.7KB (~11k tokens)**,
+and it is injected into **every** session by the `SessionStart` hook before the
+user types anything. **56% of it** (a 339-line "Current state / how it's going"
+section) was a reverse-chronological dated log — duplicating `research/journal.md`,
+which is the append-only history *and is strictly richer* (its 2026-08-16 entry
+runs 230 lines against STATE's 32-line summary of the same event). Every hardcoded
+count in that section had also rotted: "Five source repos" (six), "4 workflows"
+(seven), "5 guides" (six), "3 research notes" (eight).
+
+**The finding that matters: the wrong failure mode arrived.** Flat memory did
+fail — but it failed by **paying for duplicated volume on every session start**,
+not by failing to retrieve across hops or reason over conflicting facts in time.
+Those are the failure modes graph memory exists to solve. Adopting
+Zep/Graphiti-class tooling here would have bought **entity-resolution cost** (§3:
+"the expensive part is deciding what is the same thing") to solve what was
+actually a *deduplication and disclosure* problem. The fix was structural and
+took no new dependency: delete the duplicated log, point at the journal, and
+guard the rule in `/sync-context` so it can't silently re-grow.
+
+**Result:** 601 → 273 lines, 42.7KB → 17.9KB (−58%), saving roughly 6.5k tokens
+on every session start. Sense B remains **unadopted**, gate unchanged.
+
+**Methodological lesson (the transferable part).** §4's gate said "if memory
+outgrows flat files" — a *threshold*, not a *mode*. That phrasing would have
+justified reaching for the graph tool on the strength of a number that had
+nothing to do with what the tool does. **A watch-list gate should name the
+failure mode it's waiting for, not the size at which to look.** Rewritten, the
+gate for this one is: *adopt graph memory only when retrieval across multiple
+linked entities, or reasoning over facts that changed across time, actually
+starts producing wrong answers* — never merely because the memory got big.
+Corollary worth carrying: **check which failure arrived before applying the
+remedy you had queued.** A queued solution makes any failure look like its
+failure.
 
 ## Sources
 

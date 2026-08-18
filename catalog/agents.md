@@ -21,8 +21,17 @@ menu.
 | Fan-out / fan-in † | Breadth **research** → one synthesis (not coding) | cheap children, smart synth | mid (≈15× chat) |
 | Stochastic consensus † | Verify a **checkable** answer by agreement | cheap children, smart synth | mid–high |
 | Evaluator–optimizer loop | Improve the *tooling itself* from how it's used | cheap hooks + on-demand review | ~free to log |
+| Cross-session peers † | Two long-lived *sessions* need to consult each other | independent per session | low (no fan-out) |
 
 † carries a **Maturity**/**Evidence** caveat — see the entry before relying on it.
+
+**Second axis for every row above: fresh or forked?** Since v2.1.232 forking is
+the default, and a forked child inherits the parent's conversation *and* prompt
+cache — no 30–45k cold start. That makes the cheap rows cheaper still, but it is
+**wrong for anything whose value is independence**: a forked Reviewer, QA agent,
+or review-panel axis has already read the reasoning behind the code and will
+ratify it. Rule of thumb: **fork for volume, fresh for judgement.** Full table:
+[context-and-subagents.md → Fresh vs forked](../guides/context-and-subagents.md#fresh-vs-forked--the-spawn-mode-now-matters-as-much-as-the-model).
 
 ---
 
@@ -43,6 +52,10 @@ implementer's bias.
 the entire point here, not a compromise.
 **Cons:** must be fed the standards/spec explicitly — don't assume auto-load.
 **Efficiency:** mid model, fresh context (ideally right after `/clear`).
+**Never fork this one.** Forking is the default since v2.1.232, and a forked
+reviewer inherits the conversation the code was written in — it reviews with the
+author's bias, which is the one thing this agent exists to avoid. Spend the cold
+start; it's the whole product here. Same for QA and every review-panel axis.
 **Template / more:** [tooling/skill-templates/two-axis-review.md](../tooling/skill-templates/two-axis-review.md).
 
 ### Specialist review panel
@@ -169,6 +182,34 @@ Self-Correct Reasoning Yet](https://arxiv.org/abs/2310.01798)). Use stochastic
 consensus instead. Kept as a one-line note so it isn't re-proposed later. -->
 
 ---
+
+### Cross-session peers
+**Use when:** two *long-lived sessions* that would both exist anyway need to
+consult each other — not when one task needs helpers. `SendMessage` + `ListAgents`
+(≥v2.1.224; ≥v2.1.225 can open a conversation with a named Remote Control session
+on another machine; ≥v2.1.232 adds `@`-mention by name in the prompt).
+**Pros:** neither side pays to rebuild the other's context, and it reaches across
+machines and cloud sessions. The only pattern here that is genuinely *peer* —
+both sides are long-lived and neither owns the other's window.
+**Cons:** it's a **message, not a call** — there's no return value to synthesize,
+so the fan-out/fan-in and `0.95^N` reasoning doesn't transfer and neither do those
+templates. Both peers are full-price instances. Discovery is by session name, and
+the tools now warn when your account's session list was too long to check fully
+rather than silently reporting a session as absent — treat "not found" as
+"maybe not found". Auto mode's classifier vets outbound messages before dispatch.
+**Efficiency:** low marginal cost precisely *because* there's no fan-out — but it
+only pays when both sessions were going to be open regardless. Spinning up a
+second session so it can be messaged is just a subagent with extra steps.
+**Caution specific to this setup:** the obvious application here — bridging the
+**company** Claude Code session and a **personal** research session — runs
+straight at the boundary the 2026-08-16 full-cutover deliberately built
+(`company/migration-plan.md`). A message is an intake path, and intake across
+that line is exactly what the split exists to prevent. Decide the policy before
+using it that way, not after.
+**Maturity:** `Conceptual` — not run here; no template.
+**Evidence:** platform primitive (official CHANGELOG v2.1.224/225/232); no
+independent evaluation of whether peer coordination beats a shared state file,
+which is the cheaper alternative this repo already uses (handoff docs).
 
 ## Feedback / self-improvement patterns
 

@@ -37,16 +37,33 @@ guide written, a decision reached, a direction change). Cheap to run often.
 
 3. **Refresh `STATE.md`** (the always-current snapshot). Update only what changed:
    - `_Last synced:_` date.
-   - **Current state / how it's going** — rewrite to reflect reality now.
+   - **Current state** — this section is a *snapshot*, *never* a log.
+     **Do not add a dated entry here.** Dated narrative goes in the journal
+     (step 2) and nowhere else; this section holds only the "right now"
+     paragraph and durable facts, and you *replace* its contents rather than
+     appending to them. This is the rule that failed before: the section grew
+     into a 339-line second journal (56% of the file) and was cut back on
+     2026-08-18. If you are writing a date into this section, you are in the
+     wrong file.
    - **Key conclusions to date** — add genuinely new conclusions; prune anything
-     now superseded (this file is a snapshot, not a log — keep it lean).
-   - **Open threads / next steps** — add new ones, remove done ones.
+     now superseded (snapshot, not a log — keep it lean).
+   - **Active threads / next steps** — add new threads; when one closes, move it
+     to the **Resolved** table with its ID intact. **Never renumber** (the
+     journal cites threads by number). If a closing thread leaves real work
+     behind, give that work its **own new ID** in the active list — do not park
+     it inside a resolved row, where it goes unread.
    - **About me / Why** — touch only if something material about the user or the
      repo's purpose changed. Don't churn these.
+   - Never record file/folder **counts** ("5 guides", "three research notes").
+     Every count this file ever carried had rotted by the next read. Point at
+     the folder's `README.md` index instead.
 
 4. **Keep it honest and lean.** STATE.md is auto-loaded into every session, so
    every line costs context — cut stale lines, don't just append. If a conclusion
-   is now wrong, fix it; if a thread is done, remove it (the journal keeps the trail).
+   is now wrong, fix it; if a thread is done, move it (the journal keeps the trail).
+   **Size guard:** STATE.md sits around ~270 lines / ~18KB. If it passes ~350,
+   stop and look for a log that has crept back in — that is the failure mode,
+   and it comes back by appending one reasonable-looking dated bullet at a time.
 
 5. **Report** the journal entry added and the STATE.md sections changed. Do **not**
    commit (committing is the user's call).

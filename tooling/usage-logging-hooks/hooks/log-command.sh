@@ -6,7 +6,12 @@
 set -euo pipefail
 
 input=$(cat)
-message=$(jq -r '.user_message // ""' <<<"$input")
+# FIELD GOTCHA (fixed 2026-08-16): the UserPromptSubmit payload field is
+# `prompt`, not `user_message`. Parsing the wrong one fails *silently* — the
+# hook exits 0 and writes zero lines, so it looks installed and does nothing.
+# `user_message` is kept as a fallback in case an older//other event shape
+# supplies it. This exact bug ran undetected for 8 sessions in a real repo.
+message=$(jq -r '.prompt // .user_message // ""' <<<"$input")
 session_id=$(jq -r '.session_id // ""' <<<"$input")
 
 first_line="$(printf '%s' "$message" | head -n1)"

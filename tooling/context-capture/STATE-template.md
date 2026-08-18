@@ -20,12 +20,19 @@ _Last synced: <YYYY-MM-DD>._
 
 <goal — one paragraph: what this repo is for and what "done" looks like>
 
-## Current state / how it's going
+## Current state
 
-_As of <date> — rewritten each sync._
+_Snapshot only — **not** a log. Dated history lives in the journal._
 
-<where things stand right now: what's built, what's in progress, what just
-changed. Rewrite this section from scratch each sync; don't append.>
+<Where things stand RIGHT NOW, plus durable facts that stay true between
+sessions. **Replace this section each sync; never append.** No dated entries —
+the moment you write a date here, it belongs in the journal instead. No file or
+folder counts — they rot between reads; point at a README index instead.
+
+This is the section that fails silently: it grows into a second journal one
+reasonable-looking dated bullet at a time, and since the whole file is
+auto-loaded into every session, you pay for that duplication on every single
+start.>
 
 ## Verified facts
 
@@ -43,11 +50,21 @@ changed. Rewrite this section from scratch each sync; don't append.>
 - <conclusion 2>
 - <conclusion 3>
 
-## Open threads / next steps
+## Active threads / next steps
 
-1. <next action>
-2. <next action>
-3. <next action>
+_Stable IDs — **never renumber**; the journal cites threads by number. A closed
+thread keeps its ID and moves to **Resolved**, rather than sitting inline with
+strikethrough. If closing one leaves real work behind, give that work its **own
+new ID** here — parked inside a resolved row, it goes unread._
+
+**#1 — <thread>.** <state, what's settled, what's still open>
+**#2 — <thread>.** <…>
+
+### Resolved
+
+| # | Thread | Closed | Left behind |
+|---|---|---|---|
+| <n> | <thread> | <date> | <new ID, or —> |
 
 ## Map (where things live)
 

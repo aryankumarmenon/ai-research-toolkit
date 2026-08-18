@@ -16,6 +16,11 @@ to reach for. Distilled from Nick Saraev's "Claude Code Advanced Full Course
 
 ---
 
+> **Scope note.** This guide is about driving *someone else's* site — scraping,
+> unknown APIs, targets that may fight automation. Wiring *your own* tools
+> (Jira, Slack, GitHub, Postman, Playwright-for-E2E) is a different question
+> with different economics → [agent-integrations.md](agent-integrations.md).
+
 ## Tier 1 — HTTP requests
 
 The agent sends GET/POST directly (Claude Code does this natively via WebFetch).

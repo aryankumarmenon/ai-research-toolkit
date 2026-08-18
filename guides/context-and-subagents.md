@@ -82,6 +82,38 @@ final synthesis; cheaper, longer-context models for mechanical search, bulk
 reading, parallel grunt work. (My NAO `codebase-explorer` / `nao-server-reference`
 are both haiku, read-only, single-purpose — the template.)
 
+### Fresh vs forked — the spawn mode now matters as much as the model
+
+Since **v2.1.232, forking is the default**: a `subagent_type: "fork"` child
+inherits the **full conversation and the prompt cache** instead of cold-starting,
+and non-teammate spawns in interactive sessions run in the background by default.
+
+This maps *exactly* onto the two reasons above, in opposite directions — which is
+why it's worth being deliberate rather than taking the default blindly:
+
+| | Fresh spawn | Forked spawn |
+|---|---|---|
+| Pays the 30–45k cold start? | Yes | **No** — inherits the cache |
+| Knows what you've been doing? | No — needs briefing | Yes, all of it |
+| Carries the parent's bias? | **No — that's the point** | **Yes — unavoidably** |
+| Right for | reason 2 (objectivity): review, QA, verification, adversarial checks | reason 1 (volume): search, bulk reading, mechanical grunt work |
+
+The practical shift: delegation that was **too expensive to justify for a short
+task** often isn't any more — a 5-minute lookup no longer costs a full cold
+re-pay, so the "just do it in the main thread to avoid the overhead" instinct is
+now frequently wrong. But the *reverse* is the trap to watch: **never fork a
+reviewer.** A forked reviewer has read the whole conversation in which the code
+was written, including your reasoning for it — it will ratify, not review. When
+less context is the entire point, fresh is not the expensive option, it's the
+only correct one.
+
+**Delegation is no longer capped by total, only by shape.** The old
+200-spawn-per-session cap was removed in v2.1.224; what still bounds you is
+**20 concurrent** (`CLAUDE_CODE_MAX_CONCURRENT_SUBAGENTS`, ≥v2.1.217) and
+**spawn depth 3** (`CLAUDE_CODE_MAX_SUBAGENT_SPAWN_DEPTH`, ≥v2.1.219). Setting a
+stop condition is back to being *your* job. (The WebSearch 200/session cap does
+still stand.)
+
 **Be skeptical of swarms / agent teams:** ~7× token cost (every teammate is a full
 instance — "a nuclear weapon aimed at your wallet"). Real payoff is massive
 parallel *research/review over an existing codebase*, not building N variants of a
@@ -136,6 +168,27 @@ A ready-to-adapt template lives at
   version. On-demand tool search mitigates MCP bloat past ~10% of the window, but
   don't rely on it — prune servers you don't use.
 
+## The official cost ladder (reach for these in order)
+
+Anthropic's [Cost Optimization cookbook](https://platform.claude.com/cookbook/cost-optimization-cost-optimization)
+(2026-08-09) sequences seven levers. It's worth following *in order* because the
+cheap structural wins come first and the ones that cost you quality come last:
+
+1. **Prompt caching** — biggest single lever; also what makes forking cheap.
+2. **Input management via progressive disclosure** — load metadata, fetch bodies
+   on demand (the same principle as skill frontmatter, applied to everything).
+3. **Context editing / compaction** in the agent loop.
+4. **Output-token constraints** — cap what comes back.
+5. **Batch API** — for anything not interactive.
+6. **Model / effort tuning** — the tiering above.
+7. **Task decomposition to cheaper subagents** — last, not first.
+
+The discipline that matters more than the list: **measure cost per *task*, not
+per token, against an eval-backed quality baseline.** Cost per token can fall
+while cost per task rises, if the cheaper setup needs three attempts. Most of
+this repo already practices 1/2/6/7 piecemeal — this is the official ordering to
+check that piecemeal practice against.
+
 ## Quick checklist
 
 - [ ] `/context` run; overhead understood
@@ -143,5 +196,7 @@ A ready-to-adapt template lives at
 - [ ] Rule files split by area; recurring-mistakes doc maintained
 - [ ] `/clear` on task switch; persisted docs are the memory, not history
 - [ ] Subagents for volume or objectivity, on cheaper models, simple definitions
+- [ ] **Spawn mode chosen deliberately — forked for volume, never for review**
+- [ ] **Stop condition set explicitly (the per-session spawn cap is gone)**
 - [ ] Skills over MCP for repeatable procedures; MCP cost audited
 - [ ] Specific prompts; a rule added whenever a mistake recurs

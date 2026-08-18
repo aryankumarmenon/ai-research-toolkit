@@ -174,6 +174,23 @@ and the agent-written-memory pattern in
 
 ## Settings & permissions
 
+**Auto mode is the default posture now (Aug 14 2026, Pro/Max/Team).** New sessions
+let a classifier adjudicate each tool call instead of prompting you per action,
+falling back to manual after 3 consecutive or 20 total blocks in a session.
+Anthropic reports an 89% vs 13.6% harmful-action catch rate (classifier vs human
+reviewers, n=1,053 paid testers) `[Anthropic-reported, own methodology,
+unreplicated]` — which still leaves roughly 1 in 9 through, and a classifier
+cannot catch a *legitimately-invoked* malicious dependency at all
+`[Simon Willison, commentary]`.
+
+Why this belongs in a mechanism guide rather than a footnote: several patterns in
+this repo quietly assumed a **human approval prompt** sat between the model and a
+risky action. That assumption is no longer the default. The first line of the
+Hooks section above — *hooks are the only guaranteed behavior* — goes from a
+tidy distinction to the operative one: a `PreToolUse` deny is now the only stop
+that doesn't depend on a classifier's judgement. Auto mode raises the value of
+the warn-don't-block ledger rather than replacing it.
+
 `.claude/settings.json` holds permissions, env vars, model config, status line,
 and hook wiring; `settings.local.json` is git-ignored per-dev overrides.
 Worked example + the precedence rules (enterprise → global → project → local):
